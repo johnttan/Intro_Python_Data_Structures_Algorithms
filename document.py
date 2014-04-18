@@ -10,7 +10,7 @@ templatestring2 = str(template2)
 for file in glob.glob("**/*.py"):
     print('Doccoing {}'.format(file))
     templatestring = templatestring + """<li><a href="{0}.html">{1}</a></li>""".format(os.path.basename(file)[:-3], file)
-    os.system('pycco ' + file)
+    os.system('docco ' + file)
 templatestring += templatestring2
 print(templatestring)
 templatefile.write(templatestring)
