@@ -5,7 +5,7 @@ import nose
 
 
 
-def linearsearch(k, ls):
+def quicksearch(k, ls):
     #quickselect in linear time
 
     pindex = random.randint(0, len(ls)-1)
@@ -24,9 +24,9 @@ def linearsearch(k, ls):
     if lcount == k:
         return pivot
     elif lcount < k:
-        return linearsearch(k-lcount, ls[lcount:])
+        return quicksearch(k-lcount, ls[lcount:])
     else:
-        return linearsearch(k, ls[:lcount])
+        return quicksearch(k, ls[:lcount])
 
 
 # Sort then select
@@ -38,20 +38,20 @@ def sortselect(k, ls):
 
 ls = [random.randint(0, 1000) for x in range(1000)]
 rvar = random.randint(0, len(ls)-1)
-print(ls)
-print(rvar)
-print(linearsearch(10, ls), 'linearesult')
-print(sortselect(10, ls), 'sortresult')
-ls.sort()
-print(ls)
-# """Test correctness"""
-print(linearsearch(rvar, ls) == sortselect(rvar, ls))
+# print(ls)
+# print(rvar)
+# print(quicksearch(10, ls), 'linearesult')
+# print(sortselect(10, ls), 'sortresult')
+# ls.sort()
+# print(ls)
+# # """Test correctness"""
+# print(quicksearch(rvar, ls) == sortselect(rvar, ls))
 
 
 # """Test time efficiency"""
-time1 = Timer("linearsearch(6, ls)", "from __main__ import linearsearch, ls")
+time1 = Timer("quicksearch(6, ls)", "from __main__ import quicksearch, ls")
 time2 = Timer("sortselect(6, ls)", "from __main__ import sortselect, ls")
 
 print("linear quickselect", time1.timeit(number=1000), "s")
 print("linear sortselect", time2.timeit(number=1000), "s")
-# Tremendous gains in efficiency.
+# Tremendous gains in efficiency for mergesort.
